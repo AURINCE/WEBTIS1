@@ -1,0 +1,47 @@
+# Query: index.html
+# ContextLines: 1
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme Foot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Bienvenue sur la plateforme des jeunes footballeurs</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="connexion.html">Se connecter</a></li>
+                <li><a href="inscription.html">S'inscrire</a></li>
+            </ul>
+        </nav>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </header>
+
+    <section>
+        <h2>Rejoignez un club avec l'aide d'un agent</h2>
+        <p>Créez votre profil, ajoutez vos vidéos et contactez des agents de football.</p>
+        <a href="inscription.html" class="btn">Commencer</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Plateforme Foot. Tous droits réservés.</p>
+    </footer>
+    <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+            <a href="#">Accueil</a>
+            <a href="#">Profil</a>
+            <a href="#">Paiement</a>
+        </div>
+        <button onclick="submitForm()">Soumettre</button>
+        <div id="loading" style="display:none;">Chargement...</div>
+        <script src="script.js"></script>
+</body>
+</html>

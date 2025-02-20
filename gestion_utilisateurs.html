@@ -1,0 +1,83 @@
+<?php
+// Inclure la connexion à la base de données
+include('connexion_db.php');
+
+// Ajouter un utilisateur
+if (isset($_POST['ajouter'])) {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $email = $_POST['email'];
+    $tel = $_POST['tel'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    // Requête SQL pour ajouter l'utilisateur
+    $sql = "INSERT INTO utilisateurs (Nom, Prénom, Email, Tel, Password) 
+            VALUES ('$nom', '$prenom', '$email', '$tel', '$password')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Utilisateur ajouté avec succès.<br>";
+    } else {
+        echo "Erreur : " . $conn->error . "<br>";
+    }
+}
+
+// Mettre à jour un utilisateur
+if (isset($_POST['mettre_a_jour'])) {
+    $id_utilisateur = $_POST['id_utilisateur'];
+    $new_nom = $_POST['new_nom'];
+
+    $sql = "UPDATE utilisateurs SET Nom = '$new_nom' WHERE IDUtil = '$id_utilisateur'";
+    if ($conn->query($sql) === TRUE) {
+        echo "Utilisateur supprimé avec succès.<br>";
+    } else {
+        echo "Erreur : " . $conn->error . "<br>";
+    }
+}
+
+// Lister tous les utilisateurs
+$sql = "SELECT * FROM utilisateurs";
+$result = $conn->query($sql);
+
+echo "<h3>Liste des Utilisateurs</h3>";
+if ($result->num_rows > 0) {
+    echo "<table border='1'><tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Téléphone</th></tr>";
+    while($row = $result->fetch_assoc()) {
+        echo "<tr><td>" . $row["IDUtil"]. "</td><td>" . $row["Nom"]. "</td><td>" . $row["Prénom"]. "</td><td>" . $row["Email"]. "</td><td>" . $row["Tel"]. "</td></tr>";
+    }
+    echo "</table>";
+} else {
+    echo "Aucun utilisateur trouvé.<br>";
+}
+
+?>
+
+<!-- Formulaire d'ajout d'utilisateur -->
+<h3>Ajouter un utilisateur</h3>
+<form method="POST" action="gestion_utilisateur.php">
+    Nom: <input type="text" name="nom" required><br>
+    Prénom: <input type="text" name="prenom" required><br>
+    Email: <input type="email" name="email" required><br>
+    Téléphone: <input type="text" name="tel" required><br>
+    Mot de passe: <input type="password" name="password" required><br>
+    <input type="submit" name="ajouter" value="Ajouter Utilisateur">
+</form>
+
+<!-- Formulaire de mise à jour -->
+<h3>Mettre à jour un utilisateur</h3>
+<form method="POST" action="gestion_utilisateur.php">
+    ID Utilisateur: <input type="text" name="id_utilisateur" required><br>
+    Nouveau Nom: <input type="text" name="new_nom" required><br>
+    <input type="submit" name="mettre_a_jour" value="Mettre à jour">
+</form>
+
+<!-- Formulaire de suppression -->
+<h3>Supprimer un utilisateur</h3>
+<form method="POST" action="gestion_utilisateur.php">
+    ID Utilisateur: <input type="text" name="id_utilisateur" required><br>
+    <input type="submit" name="supprimer" value="Supprimer">
+</form>
+
+<!-- Fermer la connexion -->
+<?php
+$conn->close();
+?>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Créer un compte</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="connexion.html">Se connecter</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Inscrivez-vous</h2>
+        <form action="traitement_inscription.php" method="POST">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+            <label for="tel">Téléphone :</label>
+            <input type="tel" id="tel" name="tel" required>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="password_confirm">Confirmer le mot de passe :</label>
+            <input type="password" id="password_confirm" name="password_confirm" required>
+
+            <button type="submit">S'inscrire</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Plateforme Foot. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
